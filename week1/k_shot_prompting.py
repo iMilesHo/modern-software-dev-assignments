@@ -7,7 +7,74 @@ load_dotenv()
 NUM_RUNS_TIMES = 5
 
 # TODO: Fill this in!
-YOUR_SYSTEM_PROMPT = ""
+YOUR_SYSTEM_PROMPT = """
+Write the word backwards, letter by letter from end to beginning.
+ 
+Examples:
+hello->olleh
+world->dlrow
+python->nohtyp
+example->elpmaxe
+programming->gnimmargorp
+httpstests->stsetsptth
+teststatus->sutatstset
+statistics->scitsitats
+teststring->gnirtstset
+everything->gnihtyreve
+university->ytisrevinu
+collection->noitcelloc
+difference->ecnereffid
+hello->olleh
+world->dlrow
+python->nohtyp
+example->elpmaxe
+programming->gnimmargorp
+httpstests->stsetsptth
+teststatus->sutatstset
+statistics->scitsitats
+teststring->gnirtstset
+everything->gnihtyreve
+university->ytisrevinu
+collection->noitcelloc
+difference->ecnereffid
+hello->olleh
+world->dlrow
+python->nohtyp
+example->elpmaxe
+programming->gnimmargorp
+httpstests->stsetsptth
+teststatus->sutatstset
+statistics->scitsitats
+teststring->gnirtstset
+everything->gnihtyreve
+university->ytisrevinu
+collection->noitcelloc
+difference->ecnereffid
+ 
+Examples end with "status", the reversed string should be start with "sutats". For example:
+"teststatus" = t-e-s-t-s-t-a-t-u-s -> s-u-t-a-t-s-t-s-e-t = "sutatstset"
+Examples end with "status", the reversed string should be start with "sutats". For example:
+"teststatus" = t-e-s-t-s-t-a-t-u-s -> s-u-t-a-t-s-t-s-e-t = "sutatstset"
+Examples end with "status", the reversed string should be start with "sutats". For example:
+"teststatus" = t-e-s-t-s-t-a-t-u-s -> s-u-t-a-t-s-t-s-e-t = "sutatstset"
+Examples end with "status", the reversed string should be start with "sutats". For example:
+"teststatus" = t-e-s-t-s-t-a-t-u-s -> s-u-t-a-t-s-t-s-e-t = "sutatstset"
+Examples end with "status", the reversed string should be start with "sutats". For example:
+"teststatus" = t-e-s-t-s-t-a-t-u-s -> s-u-t-a-t-s-t-s-e-t = "sutatstset"
+Examples end with "status", the reversed string should be start with "sutats". For example:
+"teststatus" = t-e-s-t-s-t-a-t-u-s -> s-u-t-a-t-s-t-s-e-t = "sutatstset"
+ 
+ 
+We shuold treat the words/string that we need to handle as a complete string!!!
+We need to read the letters one by one and reverse them!!!
+You should only output the reversed word, no other text!!!
+"""
+ 
+USER_PROMPT = """
+Reverse the order of letters in the following word. Only output the reversed word, no other text:
+ 
+httpstatus
+"""
 
 USER_PROMPT = """
 Reverse the order of letters in the following word. Only output the reversed word, no other text:
@@ -44,3 +111,14 @@ def test_your_prompt(system_prompt: str) -> bool:
 
 if __name__ == "__main__":
     test_your_prompt(YOUR_SYSTEM_PROMPT)
+
+
+# Here is one of the output:
+"""
+Running test 1 of 50
+Expected output: sutatsptth
+Actual output: stutsatsthp
+Running test 2 of 50
+SUCCESS
+"""
+ 

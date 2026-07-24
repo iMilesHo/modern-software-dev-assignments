@@ -15,7 +15,15 @@ Keep the implementation minimal.
 """
 
 # TODO: Fill this in!
-YOUR_REFLEXION_PROMPT = ""
+YOUR_REFLEXION_PROMPT = """
+Please review the current code and the test failures we got, and fix the problems, and provide
+the correct code.
+For this function `is_valid_password(password: str) -> bool`, we should follow rules:
+1. the password should have uppercase and lowercase
+2. the password should have digit
+3. the password should have special characters from the "!@#$%^&*()-_"
+4. the password shuoldn't have space character.
+"""
 
 
 # Ground-truth test suite used to evaluate generated code
@@ -96,7 +104,18 @@ def your_build_reflexion_context(prev_code: str, failures: List[str]) -> str:
 
     Return a string that will be sent as the user content alongside the reflexion system prompt.
     """
-    return ""
+    failuresStr = ""
+    for s in failures:
+        failuresStr += (s + "\n")
+ 
+    return (
+        "Here is the current code we have to solve the task:\n"
+        "```Python\n"
+        f"{prev_code}\n"
+        "```\n\n"
+        "Also here is the failures when we are executing the code above:\n"
+        f"{failuresStr}"
+    )
 
 
 def apply_reflexion(
@@ -151,3 +170,76 @@ def run_reflexion_flow(
 
 if __name__ == "__main__":
     run_reflexion_flow(SYSTEM_PROMPT, YOUR_REFLEXION_PROMPT, your_build_reflexion_context)
+
+
+# ---test results---
+# Initial code:
+# def is_valid_password(password: str) -> bool:
+#     return len(password) >= 8 and any(c.isalpha() for c in password) and any(c.isdigit() for c in password)
+# FAILURE (initial implementation failed some tests): ['Input: password1! → expected False, got True. Failing checks: missing uppercase', 'Input: Password1 → expected False, got True. Failing checks: missing special']
+# REFLECTION CONTEXT: Here is the current code we have to solve the task:
+# ```Python
+# def is_valid_password(password: str) -> bool:
+#     return len(password) >= 8 and any(c.isalpha() for c in password) and any(c.isdigit() for c in password)
+# ```
+ 
+# Also here is the failures when we are executing the code above:
+# Input: password1! → expected False, got True. Failing checks: missing uppercase
+# Input: Password1 → expected False, got True. Failing checks: missing special
+# ,
+# Please review the current code and the test failures we got, and fix the problems, and provide
+# the correct code.
+# For this function `is_valid_password(password: str) -> bool`, we should follow rules:
+# 1. the password should have uppercase and lowercase
+# 2. the password should have digit
+# 3. the password should have special characters from the "!@#$%^&*()-_"
+# 4. the password shuoldn't have space character.
+ 
+ 
+# Improved code:
+# def is_valid_password(password: str) -> bool:
+#     """
+#     Checks if a password meets certain criteria.
+   
+#     A valid password should have at least 8 characters,
+#     contain both uppercase and lowercase letters,
+#     contain at least one digit,
+#     contain at least one special character (!@#$%^&*()-_),
+#     and not contain any spaces.
+ 
+#     Args:
+#         password (str): The password to check.
+ 
+#     Returns:
+#         bool: True if the password is valid, False otherwise.
+#     """
+   
+#     # Check for length
+#     if len(password) < 8:
+#         return False
+   
+#     # Check for uppercase letters
+#     if not any(c.isupper() for c in password):
+#         return False
+   
+#     # Check for lowercase letters
+#     if not any(c.islower() for c in password):
+#         return False
+   
+#     # Check for digits
+#     if not any(c.isdigit() for c in password):
+#         return False
+   
+#     # Check for special characters
+#     special_chars = "!@#$%^&*()-_"
+#     if not any(c in special_chars for c in password):
+#         return False
+   
+#     # Check for spaces
+#     if ' ' in password:
+#         return False
+   
+#     # If all checks pass, the password is valid
+#     return True
+# SUCCESS
+ 

@@ -8,7 +8,52 @@ load_dotenv()
 NUM_RUNS_TIMES = 5
 
 # TODO: Fill this in!
-YOUR_SYSTEM_PROMPT = ""
+YOUR_SYSTEM_PROMPT = """
+You are a master in mathmatics and calculation. You can calculate a math expression to get its final value.
+You can transform the expression to a simpler that is easier to calculate when necessary. Or you can just
+calculate the final answer correctly.
+ 
+Examples:
+2^{3} (mod 3)
+process: 2^{3} = 8, 8 (mod 3) = 2
+Answer: 2
+ 
+3^{4} (mod 5)
+process: 3^{4} = 81, 81 (mod 5) = 1
+Answer: 1
+ 
+2^{3} (mod 3)
+process: 2^{3} = 8, 8 (mod 3) = 2
+Answer: 2
+ 
+3^{4} (mod 5)
+process: 3^{4} = 81, 81 (mod 5) = 1
+Answer: 1
+ 
+2^{3} (mod 3)
+process: 2^{3} = 8, 8 (mod 3) = 2
+Answer: 2
+ 
+3^{4} (mod 5)
+process: 3^{4} = 81, 81 (mod 5) = 1
+Answer: 1
+ 
+2^{3} (mod 3)
+process: 2^{3} = 8, 8 (mod 3) = 2
+Answer: 2
+ 
+3^{4} (mod 5)
+process: 3^{4} = 81, 81 (mod 5) = 1
+Answer: 1
+ 
+ 
+ 
+Remember that give the final answer on the last line as "Answer: <number>"!!!!
+Remember that give the final answer on the last line as "Answer: <number>"!!!!
+Remember that give the final answer on the last line as "Answer: <number>"!!!!
+Remember that give the final answer on the last line as "Answer: <number>"!!!!
+Remember that give the final answer on the last line as "Answer: <number>"!!!!
+"""
 
 
 USER_PROMPT = """
@@ -70,3 +115,12 @@ if __name__ == "__main__":
     test_your_prompt(YOUR_SYSTEM_PROMPT)
 
 
+# The actual test results:
+"""
+Running test 1 of 5
+Expected output: Answer: 43
+Actual output: Answer: 61
+Running test 2 of 5
+SUCCESS
+"""
+ 

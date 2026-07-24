@@ -37,7 +37,34 @@ QUESTION = (
 
 
 # TODO: Fill this in!
-YOUR_SYSTEM_PROMPT = ""
+YOUR_SYSTEM_PROMPT = """
+You are a senior software engineer. You can refer to the context and write code (Python) to meet the requirement.
+You can think in a efficient way, make the solution simple but correct, and very confident without overthinking and
+review.
+ 
+Rules:
+1. Read the context to know the API defination
+2. Based on the defination and the task, write the Python code to achive the requierments
+3. Output the code in a fenced Python block.
+4. For Https request, don't forget to add the `X-API-Key` in the header
+ 
+<Example>
+ 
+Context: Python coding problem
+Tasks: giving two integers, return the sum of them.
+ 
+Your ansewr or output:
+```Python
+def sumOf(a, b):
+  return a + b
+```
+</Example>
+ 
+Remember output A single fenced Python code block with the function and necessary imports.
+Remember output A single fenced Python code block with the function and necessary imports.
+Remember output A single fenced Python code block with the function and necessary imports.
+ 
+"""
 
 
 # For this simple example
@@ -56,6 +83,8 @@ def YOUR_CONTEXT_PROVIDER(corpus: List[str]) -> List[str]:
 
     For example, return [] to simulate missing context, or [corpus[0]] to include the API docs.
     """
+    if not corpus:
+      return corpus
     return []
 
 
@@ -121,3 +150,30 @@ def test_your_prompt(system_prompt: str, context_provider: Callable[[List[str]],
 
 if __name__ == "__main__":
     test_your_prompt(YOUR_SYSTEM_PROMPT, YOUR_CONTEXT_PROVIDER)
+
+# Final test results
+"""
+Running test 1 of 5
+```python
+import requests
+ 
+def fetch_user_name(user_id: str, api_key: str) -> str:
+    base_url = "https://api.example.com"
+    endpoint = f"/users/{user_id}"
+   
+    headers = {
+        'X-API-Key': api_key,
+        'Content-Type': 'application/json'
+    }
+   
+    response = requests.get(base_url + endpoint, headers=headers)
+   
+    if response.status_code != 200:
+        raise Exception(f"Failed to fetch user name. Status code: {response.status_code}")
+       
+    data = response.json()
+    return data['name']
+```
+SUCCESS
+"""
+ 

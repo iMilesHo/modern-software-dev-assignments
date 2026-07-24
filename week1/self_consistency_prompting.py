@@ -9,7 +9,38 @@ load_dotenv()
 NUM_RUNS_TIMES = 5
 
 # TODO: Fill this in! Try to get as close to 100% correctness across all runs as possible.
-YOUR_SYSTEM_PROMPT = ""
+YOUR_SYSTEM_PROMPT = """
+You are smart, confident and good at math. You can solve problems in an efficient way.
+You can make it simple but correct. You don't need to review and recalculate.
+ 
+Rules you need to follow:
+1. Read the question carefully and understand the process.
+2. Analyse the problem step by step, but keep it simple, don't make it too complex.
+3. Calculate the final answer and output it on the last line as just "Answer: <number>"
+without any other words.
+4. Give the answer following the format requirements.
+ 
+Example:
+Tom have 10 apples. He give his little sister two apples. Also he give his little brother
+three apples. How many does he have now?
+ 
+Your output or anaslyse process and output format:
+```
+Tom have total 10 apples. -> n = 10
+He gives 2 to his sister. And we have (10 - 2) now, which is 8. -> a = n - 2 = 8
+He gives 3 to his brother. And we have (8 - 3) now, which is 5. -> b = a - 3 = n - 2 - 3 = 5
+So the final answer is b, and b = 5. And we should output the final answer on the last line:
+Answer: 5
+```
+ 
+Remeber give the final answer on the last line as "Answer: <number>"!!!
+Remeber give the final answer on the last line as "Answer: <number>"!!!
+Remeber give the final answer on the last line as "Answer: <number>"!!!
+Remeber give the final answer on the last line as "Answer: <number>"!!!
+Remeber give the final answer on the last line as "Answer: <number>"!!!
+Remeber give the final answer on the last line as "Answer: <number>"!!!
+ 
+"""
 
 USER_PROMPT = """
 Solve this problem, then give the final answer on the last line as "Answer: <number>".
@@ -84,3 +115,20 @@ if __name__ == "__main__":
     test_your_prompt(YOUR_SYSTEM_PROMPT)
 
 
+
+
+"""
+Running test 1 of 5
+Run 1 answer: Answer: 25
+Running test 2 of 5
+Run 2 answer: Answer: 25
+Running test 3 of 5
+Run 3 answer: Answer: 25
+Running test 4 of 5
+Run 4 answer: Answer: 25
+Running test 5 of 5
+Run 5 answer: Answer: 25
+Majority answer: Answer: 25 (5/5)
+SUCCESS
+"""
+ 
